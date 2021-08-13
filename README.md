@@ -17,15 +17,20 @@ Allows testing credentials from many different database systems.
     <th>Response</th>
   </tr>
   <tr>
-    <td><pre>/credentials/snowflake</pre></td>
+    <td><pre>GET /health</pre></td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td><pre>POST /credentials/snowflake</pre></td>
     <td>
 <pre>
-hostname: string,
-port: number,
-username: string,
-password: string,
-database: string,
-schema?: string,
+hostname: string
+port: number
+username: string
+password: string
+database: string
+schema?: string
 workspace?: string
 </pre>
     </td>

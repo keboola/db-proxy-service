@@ -1,0 +1,33 @@
+{
+  "name": "db-proxy-service",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=14",
+    "npm": "^7",
+    "yarn": "^1.22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prestart": "rimraf build && yarn build",
+    "start": "node build/index.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.6.1",
+    "@types/snowflake-sdk": "^1.6.0",
+    "jest": "^27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.20.4",
+    "fastify": "^3.20.1",
+    "fastify-cors": "^6.0.2",
+    "glob": "^7.1.7",
+    "snowflake-sdk": "^1.6.1"
+  }
+}

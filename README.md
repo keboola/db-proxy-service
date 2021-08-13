@@ -25,8 +25,8 @@ port: number,
 username: string,
 password: string,
 database: string,
-schema: string,
-workspace: string
+schema?: string,
+workspace?: string
 </pre>
     </td>
     <td>

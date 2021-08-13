@@ -1,5 +1,6 @@
 import type {
   FastifyInstance,
+  FastifyPluginOptions,
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
@@ -20,18 +21,25 @@ export const create = <Body = unknown>(
   >
 ) => route;
 
-export const setup = (server: FastifyInstance) => {
-  // this globs all files under `routes`,
+export default (
+  server: FastifyInstance,
+  opts: FastifyPluginOptions,
+  done: (err?: Error) => void
+) => {
+  // this globs all `*.route.js` files under `routes`,
   // treating the default export as the route options
   // and the path relative to `routes` as the URL
   // e.g. `routes/credentials.ts` becomes `/credentials`
-
+  server.log.info("Initializing router");
   for (const route of glob.sync("**/*.route.js", { cwd: path.join(__dirname, "routes") })) {
+    // strip the suffix
     const name = route.substring(0, route.length - ".route.js".length);
-    console.log(name);
+    const options = require(`./routes/${name}.route`).default;
+    server.log.info(`Created route ${options.method} /${name}`);
     server.route<{ Body: {} }>({
-      ...require(`./routes/${name}.route`).default,
+      ...options,
       url: "/" + name
     });
   }
+  done();
 };

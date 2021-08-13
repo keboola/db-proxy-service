@@ -15,9 +15,7 @@ const testCredentials = (options: ConnectionOptions) =>
   });
 
 const Body = Type.Object({
-  // `snowflake-sdk` parses the account name out of the host string
-  // it expects at least one dot
-  hostname: Type.RegEx(/.*\..*/),
+  hostname: Type.String(),
   port: Type.Number(),
   username: Type.String(),
   password: Type.String(),
@@ -29,11 +27,11 @@ type Body = Static<typeof Body>;
 
 export default create<Body>({
   method: "POST",
-  //schema: { body: Body },
+  schema: { body: Body },
   handler: async (req) => {
     try {
       await testCredentials({
-        accessUrl: `https://${req.body.hostname}:${req.body.port}`,
+        accessUrl: `${req.body.hostname}:${req.body.port}`,
         username: req.body.username,
         password: req.body.password,
         database: req.body.password,

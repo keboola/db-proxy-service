@@ -7,14 +7,6 @@ Allows testing credentials from many different database systems.
 1. Clone the repository
 2. `yarn` or `npm install`
 3. `yarn start` or `npm run start`
-4. Test the API using `curl`:
-
-```
-$ curl \
-  -H "Content-type: application/json" \
-  -d '{\"hostname\":\"test.com\",\"port\":443,\"username\":\"test\",\"password\":\"test\",\"database\":\"test\",\"schema\":\"test\",\"workspace\":\"test\"}' \
-  'http://localhost:3000/credentials/snowflake'
-```
 
 ### Endpoints
 
@@ -28,27 +20,36 @@ $ curl \
     <td><pre>/credentials/snowflake</pre></td>
     <td>
 <pre>
-{
-  hostname: string,
-  port: number,
-  username: string,
-  password: string,
-  database: string,
-  schema: string,
-  workspace: string
-}
+hostname: string,
+port: number,
+username: string,
+password: string,
+database: string,
+schema: string,
+workspace: string
 </pre>
     </td>
     <td>
 <pre>
-{
-  success: boolean
-}
+success: boolean
 </pre>
     </td>
   </tr>
 </table>
 
-|         Endpoint         | Request | Response |
-| :----------------------: | :-----: | :------: |
-| `/credentials/snowflake` |    `    |
+### Examples
+
+Testing `Snowflake` credentials:
+
+```js
+fetch("http://localhost:3000/credentials/snowflake", {
+  method: "POST",
+  hostname: "https://<account>.snowflakecomputing.com",
+  port: 443,
+  username: "...",
+  password: "...",
+  database: "...",
+  schema: "...",
+  warehouse: "..."
+});
+```

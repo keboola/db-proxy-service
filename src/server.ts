@@ -6,7 +6,7 @@ export async function start() {
   const server = fastify({ logger: true });
   server.register(cors);
   router.setup(server);
-  server.listen(3000, (err) => {
+  server.listen(3000, "0.0.0.0", (err) => {
     if (err) {
       console.error(err);
       process.exit(1);

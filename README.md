@@ -44,12 +44,15 @@ Testing `Snowflake` credentials:
 ```js
 fetch("http://localhost:3000/credentials/snowflake", {
   method: "POST",
-  hostname: "https://<account>.snowflakecomputing.com",
-  port: 443,
-  username: "...",
-  password: "...",
-  database: "...",
-  schema: "...",
-  warehouse: "..."
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    hostname: "https://<account>.snowflakecomputing.com",
+    port: 443,
+    username: "...",
+    password: "...",
+    database: "...",
+    schema: "...",
+    warehouse: "..."
+  })
 });
 ```

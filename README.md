@@ -2,12 +2,6 @@
 
 Allows testing credentials from many different database systems.
 
-### Usage
-
-1. Clone the repository
-2. `yarn` or `npm install`
-3. `yarn start` or `npm run start`
-
 ### Endpoints
 
 <table>
@@ -17,15 +11,15 @@ Allows testing credentials from many different database systems.
     <th>Response</th>
   </tr>
   <tr>
-    <td><pre>GET /health</pre></td>
+    <td><pre>GET /api/health</pre></td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><pre>POST /credentials/snowflake</pre></td>
+    <td><pre>POST /api/credentials/snowflake</pre></td>
     <td>
 <pre>
-hostname: string
+host: string
 port: number
 username: string
 password: string
@@ -42,16 +36,22 @@ success: boolean
   </tr>
 </table>
 
+### Local development
+
+```
+$ yarn && yarn dev
+```
+
 ### Examples
 
 Testing `Snowflake` credentials:
 
 ```js
-fetch("http://localhost:3000/credentials/snowflake", {
+fetch("http://localhost:3000/api/credentials/snowflake", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    hostname: "https://<account>.snowflakecomputing.com",
+    host: "https://<account>.snowflakecomputing.com",
     port: 443,
     username: "...",
     password: "...",

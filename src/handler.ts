@@ -27,11 +27,9 @@ const ajv = addFormats(new Ajv({}), [
   .addKeyword("kind")
   .addKeyword("modifier");
 
-const corsHandler = Cors();
-const cors = (req: NextApiRequest, res: NextApiResponse) =>
-  new Promise<void>((resolve, reject) =>
-    corsHandler(req, res, (err) => (err instanceof Error ? reject(err) : resolve()))
-  );
+const corsInstance = Cors();
+const NOOP = () => {};
+const cors = (req: NextApiRequest, res: NextApiResponse) => corsInstance(req, res, NOOP);
 
 export type Request = NextApiRequest & { log: Logger };
 export type Response = NextApiResponse;

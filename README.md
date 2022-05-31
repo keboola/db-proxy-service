@@ -61,3 +61,7 @@ fetch("http://localhost:3000/api/credentials/snowflake", {
   })
 });
 ```
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
